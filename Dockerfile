@@ -6,7 +6,7 @@ LABEL maintainer="addyclement@gmail.com"
 USER root
 RUN pip install pandas PyMySQL boto3 requests pymongo
 RUN pip install mysql-connector-python
-RUN apt-get update && apt-get install -y curl 
+RUN apt-get update && apt-get install -y curl git
 
 RUN curl https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk/1.12.528/aws-java-sdk-1.12.528.jar --output /opt/bitnami/spark/jars/aws-java-sdk-1.12.528.jar
 RUN curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.6/hadoop-aws-3.3.6.jar --output /opt/bitnami/spark/jars/hadoop-aws-3.3.6.jar
@@ -14,6 +14,11 @@ RUN curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.6/hadoo
 
 #make script directory
 RUN mkdir -p /opt/bitnami/spark/scripts
+
+#pull code from public git repo
+
+# RUN cd /opt/bitnami/spark/scripts \        
+#           git clone https://github.com/addyclement/Spark-Streaming-Kafka2Elasticsearch.git
 
 # set work directory
 WORKDIR /opt/bitnami/spark/scripts
